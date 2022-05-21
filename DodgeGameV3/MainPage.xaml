@@ -9,8 +9,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Canvas Name="myCanvas" Background="LightBlue"  >
-            
+        <Canvas Name="myCanvas"  >
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Assets/156508-sajmon_stlenhag_oushen-art-nauchnaya_fantastika-cifrovoe_iskusstvo-okean-1920x1080.jpg"/>
+            </Canvas.Background>
+
         </Canvas>
 
     </Grid>

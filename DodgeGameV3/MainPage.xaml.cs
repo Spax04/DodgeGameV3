@@ -32,6 +32,7 @@ namespace DodgeGameV3
         Rectangle[] enemyRect;
         DispatcherTimer timer;
         
+        
         public MainPage()
         {
             this.InitializeComponent();
