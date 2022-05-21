@@ -33,6 +33,7 @@ namespace DodgeGameV3
         Rectangle playerRect;
         Rectangle[] enemyRect;
         DispatcherTimer timer;
+        public int enemyCounter = 0;
 
          public ImageBrush bg = new ImageBrush();
         
@@ -169,7 +170,11 @@ namespace DodgeGameV3
                 Canvas.SetTop(enemyRect, Canvas.GetTop(enemyRect) + e1._speed);
                 e1._y = (int)Canvas.GetTop(enemyRect)+- e1._speed;
             }
-
          }
+
+        void isHit(Rectangle enemyRectangle)
+        {
+            
+        }
     }
 }
