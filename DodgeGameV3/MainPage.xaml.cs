@@ -18,8 +18,10 @@ using Windows.UI.Xaml.Media;
 using Windows.System;
 using Windows.UI.ViewManagement;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Shapes;
 
 
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace DodgeGameV3
 {
@@ -31,6 +33,8 @@ namespace DodgeGameV3
         Rectangle playerRect;
         Rectangle[] enemyRect;
         DispatcherTimer timer;
+
+         public ImageBrush bg = new ImageBrush();
         
         
         public MainPage()
@@ -121,7 +125,9 @@ namespace DodgeGameV3
 
             if(ut is PlayerUnit)
             {
+
                 rectangle.Fill = new SolidColorBrush(Windows.UI.Colors.Blue);
+
             }
             else
             {
