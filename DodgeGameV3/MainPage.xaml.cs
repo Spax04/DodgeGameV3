@@ -47,27 +47,7 @@ namespace DodgeGameV3
         {
             this.InitializeComponent();
 
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 200);
-            timer.Tick += timer_Tick;
-            timer.Start();
-
-
-
-
-            Rect windowRectangle = ApplicationView.GetForCurrentView().VisibleBounds;
-            gameboard = new GameBoard(windowRectangle.Width, windowRectangle.Height);
-            playerRect = createNewRectangle(gameboard.player);
-
-            enemyRect = new Rectangle[10];
-            for (int i = 0; i < enemyRect.Length; i++)
-            {
-                enemyRect[i] = createNewRectangle(gameboard.enemy[i]);
-                /*System.Threading.Thread.Sleep(5000);*/              //spawn
-            }
-
-            // Player Controller
-            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
+            
 
 
 
@@ -220,9 +200,33 @@ namespace DodgeGameV3
             }
         }
 
-       
+        private void btnStartGame_Click(object sender, RoutedEventArgs e)
+        {
+            myCanvas.Children.Remove(btnStartGame);
+            myCanvas.Children.Remove(startBg);
+            myCanvas.Children.Remove(gameRules);
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            timer.Tick += timer_Tick;
+            timer.Start();
 
 
+
+
+            Rect windowRectangle = ApplicationView.GetForCurrentView().VisibleBounds;
+            gameboard = new GameBoard(windowRectangle.Width, windowRectangle.Height);
+            playerRect = createNewRectangle(gameboard.player);
+
+            enemyRect = new Rectangle[10];
+            for (int i = 0; i < enemyRect.Length; i++)
+            {
+                enemyRect[i] = createNewRectangle(gameboard.enemy[i]);
+                /*System.Threading.Thread.Sleep(5000);*/              //spawn
+            }
+
+            // Player Controller
+            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
+        }
     }
 }
 

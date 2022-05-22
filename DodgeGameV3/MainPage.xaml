@@ -13,6 +13,21 @@
             <Canvas.Background>
                 <ImageBrush ImageSource="/Assets/156508-sajmon_stlenhag_oushen-art-nauchnaya_fantastika-cifrovoe_iskusstvo-okean-1920x1080.jpg"/>
             </Canvas.Background>
+            <Rectangle x:Name="startBg" Height="1252" Canvas.Left="-240" Stroke="Black" Canvas.Top="-142" Width="2458">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Assets/startScreen.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Button x:Name="btnStartGame" Content="" Canvas.Left="168" Canvas.Top="810" Height="94" Width="219" RenderTransformOrigin="0.48,0.468" IsEnabled="True" Canvas.ZIndex="600" VerticalAlignment="Top" Click="btnStartGame_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/btnStart.png" Stretch="None"/>
+                </Button.Background>
+            </Button>
+            <Rectangle x:Name="gameRules" Height="524" Canvas.Left="446" Canvas.Top="520" Width="450">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/Assets/Rules.png" Stretch="None"/>
+                </Rectangle.Fill>
+            </Rectangle>
 
         </Canvas>
 
