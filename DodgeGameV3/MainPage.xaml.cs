@@ -21,6 +21,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml.Shapes;
 
 
+
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace DodgeGameV3
@@ -127,12 +128,19 @@ namespace DodgeGameV3
             if(ut is PlayerUnit)
             {
 
-                rectangle.Fill = new SolidColorBrush(Windows.UI.Colors.Blue);
+                rectangle.Fill = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/diverV2-removebg-preview.png"))
+                };
 
             }
             else
             {
-                rectangle.Fill = new SolidColorBrush(Windows.UI.Colors.Red);
+                rectangle.Fill = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Shark.png"))
+                };
+                //rectangle.Fill = new SolidColorBrush(Windows.UI.Colors.Red);
             }
             
             Canvas.SetLeft(rectangle,ut._x);

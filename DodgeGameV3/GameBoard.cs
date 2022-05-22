@@ -13,24 +13,21 @@ namespace DodgeGameV3
         public EnemyUnit[] enemy;
 
         public double _boardWidth, _boardHeight;
-        Random random = new Random();  
+        Random random = new Random();
 
-        public GameBoard(double boardWidth,double boardHeight)
+        public GameBoard(double boardWidth, double boardHeight)
         {
             this._boardWidth = boardWidth;
             this._boardHeight = boardHeight;
 
-            player = new PlayerUnit((int)_boardWidth/2,(int)_boardHeight/2);
+            player = new PlayerUnit((int)_boardWidth / 2, (int)_boardHeight / 2);
 
             enemy = new EnemyUnit[10];
 
-            for(int i = 0; i < enemy.Length; i++)
+            for (int i = 0; i < enemy.Length; i++)
             {
                 enemy[i] = new EnemyUnit(random.Next(30, (int)_boardWidth - 30), random.Next(30, (int)_boardHeight - 30));
             }
         }
-
-      
-
     }
 }

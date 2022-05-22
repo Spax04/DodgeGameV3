@@ -8,7 +8,7 @@ namespace DodgeGameV3.Units
 {
     public class PlayerUnit : UnitTool
     {
-        public PlayerUnit(int x, int y) : base(x, y, 50, 50,10)
+        public PlayerUnit(int x, int y) : base(x, y, 70, 70,10)
         {
             
         }
