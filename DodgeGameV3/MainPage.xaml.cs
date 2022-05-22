@@ -19,6 +19,8 @@ using Windows.System;
 using Windows.UI.ViewManagement;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Shapes;
+using System.Windows;
+using Windows.Media.Devices;
 
 
 
@@ -26,25 +28,26 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace DodgeGameV3
 {
-    
+
     public sealed partial class MainPage : Page
     {
         GameBoard gameboard;
-        
+
         Rectangle playerRect;
         Rectangle[] enemyRect;
         DispatcherTimer timer;
+        public bool collision = false;
         public int enemyCounter = 0;
 
-         public ImageBrush bg = new ImageBrush();
-        
-        
+
+
+
         public MainPage()
         {
             this.InitializeComponent();
 
             timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0,0,200);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 200);
             timer.Tick += timer_Tick;
             timer.Start();
 
@@ -52,11 +55,11 @@ namespace DodgeGameV3
 
 
             Rect windowRectangle = ApplicationView.GetForCurrentView().VisibleBounds;
-            gameboard = new GameBoard(windowRectangle.Width,windowRectangle.Height);
+            gameboard = new GameBoard(windowRectangle.Width, windowRectangle.Height);
             playerRect = createNewRectangle(gameboard.player);
 
             enemyRect = new Rectangle[10];
-            for(int i = 0; i < enemyRect.Length; i++)
+            for (int i = 0; i < enemyRect.Length; i++)
             {
                 enemyRect[i] = createNewRectangle(gameboard.enemy[i]);
                 /*System.Threading.Thread.Sleep(5000);*/              //spawn
@@ -64,8 +67,8 @@ namespace DodgeGameV3
 
             // Player Controller
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
-            //Window.Current.CoreWindow.KeyUp += KeyIsUp; 
-            //
+
+
 
 
         }
@@ -73,16 +76,22 @@ namespace DodgeGameV3
 
         //Timer
 
-        private void timer_Tick(object sender,object e)
+        private void timer_Tick(object sender, object e)
         {
-            for(int i = 0; i < enemyRect.Length; i++)
+            for (int i = 0; i < enemyRect.Length; i++)
             {
                 enemyMove(enemyRect[i], gameboard.enemy[i], gameboard.player);
             }
-            
-            
 
-            
+            for (int i = 0; i < enemyRect.Length; i++)
+            {
+                for (int j = 1; j < enemyRect.Length; j++)
+                {
+                    checkCollision(enemyRect[i], gameboard.enemy[i], gameboard.enemy[j]);
+                }
+            }
+
+
         }
 
         //==================
@@ -125,7 +134,7 @@ namespace DodgeGameV3
             rectangle.Width = ut._width;
             rectangle.Height = ut._height;
 
-            if(ut is PlayerUnit)
+            if (ut is PlayerUnit)
             {
 
                 rectangle.Fill = new ImageBrush
@@ -142,21 +151,21 @@ namespace DodgeGameV3
                 };
                 //rectangle.Fill = new SolidColorBrush(Windows.UI.Colors.Red);
             }
-            
-            Canvas.SetLeft(rectangle,ut._x);
+
+            Canvas.SetLeft(rectangle, ut._x);
             Canvas.SetTop(rectangle, ut._y);
 
             myCanvas.Children.Add(rectangle);
 
-        
+
             return rectangle;
         }
-       //===============
+        //===============
 
         //Enemy moovment
 
-         void enemyMove(Rectangle enemyRect,UnitTool e1,UnitTool p1)
-         {
+        void enemyMove(Rectangle enemyRect, UnitTool e1, UnitTool p1)
+        {
 
             if (e1._x > p1._x)
             {
@@ -167,7 +176,7 @@ namespace DodgeGameV3
             {
                 Canvas.SetLeft(enemyRect, Canvas.GetLeft(enemyRect) + e1._speed);
                 e1._x = (int)Canvas.GetLeft(enemyRect) + e1._speed;
-            } 
+            }
             if (e1._y > p1._y)
             {
                 Canvas.SetTop(enemyRect, Canvas.GetTop(enemyRect) - e1._speed);
@@ -176,13 +185,16 @@ namespace DodgeGameV3
             if (e1._y < p1._y)
             {
                 Canvas.SetTop(enemyRect, Canvas.GetTop(enemyRect) + e1._speed);
-                e1._y = (int)Canvas.GetTop(enemyRect)+- e1._speed;
+                e1._y = (int)Canvas.GetTop(enemyRect) + -e1._speed;
             }
-         }
-
-        void isHit(Rectangle enemyRectangle)
-        {
-            
         }
+
+
+
+
+
+
+
     }
 }
+
