@@ -21,6 +21,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml.Shapes;
 using System.Windows;
 using Windows.Media.Devices;
+using System.Threading.Tasks;
 
 
 
@@ -83,14 +84,18 @@ namespace DodgeGameV3
                 enemyMove(enemyRect[i], gameboard.enemy[i], gameboard.player);
             }
 
-            for (int i = 0; i < enemyRect.Length; i++)
+            for(int i = 0; i < enemyRect.Length; i++)
             {
-                for (int j = 1; j < enemyRect.Length; j++)
+                for(int j = i +1; j< enemyRect.Length; j++)
                 {
-                    checkCollision(enemyRect[i], gameboard.enemy[i], gameboard.enemy[j]);
+                    collisionCheck(enemyRect[i], gameboard.enemy[i], gameboard.enemy[j]);
                 }
             }
 
+            if(enemyCounter == 9)
+            {
+                timer.Stop();
+            }
 
         }
 
@@ -149,7 +154,7 @@ namespace DodgeGameV3
                 {
                     ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Shark.png"))
                 };
-                //rectangle.Fill = new SolidColorBrush(Windows.UI.Colors.Red);
+                
             }
 
             Canvas.SetLeft(rectangle, ut._x);
@@ -191,8 +196,31 @@ namespace DodgeGameV3
 
 
 
+        async void collisionCheck(Rectangle enemyRectangle, UnitTool enemyRectOne, UnitTool enemyRectTwo)
+        {
+            if (enemyRectOne._x + enemyRectOne._width >= enemyRectTwo._x &&
+                enemyRectOne._x <= enemyRectTwo._x + enemyRectTwo._width &&
+                enemyRectOne._y + enemyRectOne._height >= enemyRectTwo._y &&
+                enemyRectOne._y <= enemyRectTwo._y + enemyRectTwo._height)
 
+            {
+                //style part: 
+                enemyRectangle.Fill = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/DeadFish2.png"))
+                    
+                };
+                enemyRectangle.Width = 50;
+                enemyRectangle.Height = 50;
+                enemyRectOne._speed = 0;
 
+                await Task.Delay(4000); //async pause 
+                myCanvas.Children.Remove(enemyRectangle);
+                
+            }
+        }
+
+       
 
 
     }
