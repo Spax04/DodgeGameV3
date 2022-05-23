@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 
 
 
+
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace DodgeGameV3
@@ -61,6 +62,9 @@ namespace DodgeGameV3
             myCanvas.Children.Remove(startMenuRect);
             myCanvas.Children.Remove(gameRules);
 
+            myCanvas.Children.Add(btnPause);
+            
+
             // timer has begone
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -80,7 +84,20 @@ namespace DodgeGameV3
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
         }
         //==========
+        private void btnPause_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+            myCanvas.Children.Remove(btnPause);
+            myCanvas.Children.Add(btnPlay);
 
+        }
+
+        private void btnPlay_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Start();
+            myCanvas.Children.Remove(btnPlay);
+            myCanvas.Children.Add(btnPause);
+        }
         // Timer
         private void timer_Tick(object sender, object e)
         {
@@ -145,6 +162,9 @@ namespace DodgeGameV3
         // Start Menu Settings
         public Rectangle startMenu(GameBoard gb)
         {
+            myCanvas.Children.Remove(btnPause);
+            myCanvas.Children.Remove(btnPlay);
+
             Rectangle startRect = new Rectangle();
             startRect.Width = gb._boardWidth;
             startRect.Height = gb._boardHeight;
@@ -159,9 +179,15 @@ namespace DodgeGameV3
 
             return startRect;
         }
+
+       
+
+       
+
+
         //================
 
-        
+
     }
 }
 

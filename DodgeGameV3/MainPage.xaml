@@ -13,17 +13,27 @@
             <Canvas.Background>
                 <ImageBrush ImageSource="/Assets/156508-sajmon_stlenhag_oushen-art-nauchnaya_fantastika-cifrovoe_iskusstvo-okean-1920x1080.jpg"/>
             </Canvas.Background>
-            <Button x:Name="btnStartGame" Content="" Canvas.Left="166" Canvas.Top="567" Height="94" Width="219" RenderTransformOrigin="0.48,0.468" IsEnabled="True" Canvas.ZIndex="4" VerticalAlignment="Top" Click="btnStartGame_Click">
+            <Button x:Name="btnStartGame" Content="" Canvas.Left="130" Canvas.Top="854" Height="94" Width="219" RenderTransformOrigin="0.48,0.468" Canvas.ZIndex="4" Click="btnStartGame_Click" VerticalAlignment="Top" PointerEntered="btnStartGame_PointerEntered">
                 <Button.Background>
-                    <ImageBrush ImageSource="/Assets/btnStart.png" Stretch="None"/>
+                    <ImageBrush ImageSource="/Assets/btnStart.png" Stretch="Fill"/>
                 </Button.Background>
             </Button>
-            <Rectangle x:Name="gameRules" Height="524" Canvas.Left="640" Canvas.Top="305" Width="450" Canvas.ZIndex="3">
+            <Rectangle x:Name="gameRules" Height="524" Canvas.Left="1210" Canvas.Top="540" Width="450" Canvas.ZIndex="3">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Assets/Rules.png" Stretch="Fill"/>
                 </Rectangle.Fill>
             </Rectangle>
             <TextBlock x:Name="txtBlock" Canvas.Left="1181" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="102"/>
+            <Button x:Name="btnPause" Content="" Canvas.Left="1308" Canvas.Top="22" Height="99" VerticalAlignment="Top" Width="193" Click="btnPause_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/btnPause.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnPlay" Content="" Canvas.Left="1308" Canvas.Top="22" Height="99" Width="193" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnPlay_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/btnPlay.png"/>
+                </Button.Background>
+            </Button>
 
         </Canvas>
 

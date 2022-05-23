@@ -135,6 +135,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\156508-sajmon_stlenhag_oushen-art-nauchnaya_fantastika-cifrovoe_iskusstvo-okean-1920x1080.jpg" />
+    <Content Include="Assets\btnPause.png" />
+    <Content Include="Assets\btnPlay.png" />
     <Content Include="Assets\btnStart.png" />
     <Content Include="Assets\DeadFish2.png" />
     <Content Include="Assets\diverV2-removebg-preview.png" />
