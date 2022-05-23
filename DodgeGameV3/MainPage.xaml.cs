@@ -60,8 +60,7 @@ namespace DodgeGameV3
         }
 
 
-        //Timer
-
+        // Timer
         private void timer_Tick(object sender, object e)
         {
             for (int i = 0; i < enemyRect.Length; i++)
@@ -92,12 +91,15 @@ namespace DodgeGameV3
             switch (e.VirtualKey)
             {
                 case VirtualKey.Left:
+                    /*if(gameboard.player._x == 0)
+                    {
+                        Canvas.SetLeft(playerRect, myCanvas.MaxWidth);
+                    }else*/
                     Canvas.SetLeft(playerRect, Canvas.GetLeft(playerRect) - gameboard.player._speed);
                     gameboard.player._x = (int)Canvas.GetLeft(playerRect) - gameboard.player._speed;
-                    if(gameboard.player._x == gameboard._boardWidth) { 
+                                        
+                        
                     
-                        Canvas.SetLeft(playerRect, 0);
-                    }
                     break;
 
                 case VirtualKey.Right:
@@ -121,43 +123,7 @@ namespace DodgeGameV3
 
         //============
 
-        // Creating Rectangles
-        public Rectangle createNewRectangle(UnitTool ut)
-        {
-            Rectangle rectangle = new Rectangle();
-            rectangle.Width = ut._width;
-            rectangle.Height = ut._height;
-
-            if (ut is PlayerUnit)
-            {
-
-                rectangle.Fill = new ImageBrush
-                {
-                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/diverV2-removebg-preview.png"))
-                };
-
-            }
-            else
-            {
-                rectangle.Fill = new ImageBrush
-                {
-                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Shark.png"))
-                };
-
-            }
-
-            Canvas.SetLeft(rectangle, ut._x);
-            Canvas.SetTop(rectangle, ut._y);
-
-            myCanvas.Children.Add(rectangle);
-
-
-            return rectangle;
-        }
-        //===============
-
         //Enemy moovment
-
         void enemyMove(Rectangle enemyRect, UnitTool e1, UnitTool p1)
         {
 
@@ -182,9 +148,9 @@ namespace DodgeGameV3
                 e1._y = (int)Canvas.GetTop(enemyRect) + -e1._speed;
             }
         }
+        //============
 
-
-
+        // cheking hits method
         async void collisionCheck(Rectangle enemyRectangle, UnitTool enemyRectOne, UnitTool enemyRectTwo)
         {
             if (enemyRectOne._x + enemyRectOne._width >= enemyRectTwo._x &&
@@ -209,9 +175,9 @@ namespace DodgeGameV3
                 
             }
         }
+        //============
 
         // Start Menu Stings
-
         public Rectangle startMenu(GameBoard gb)
         {
             Rectangle startRect = new Rectangle();
@@ -228,34 +194,35 @@ namespace DodgeGameV3
 
             return startRect;
         }
-
+        //================
 
         //btn Start game. When btn is pressed - game is begane.
         private void btnStartGame_Click(object sender, RoutedEventArgs e) 
         {
+            //Removing start menu while btn was clicked
             myCanvas.Children.Remove(btnStartGame);
             myCanvas.Children.Remove(startMenuRect);
             myCanvas.Children.Remove(gameRules);
 
-           
-
+            // timer has begone
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             timer.Tick += timer_Tick;
             timer.Start();
- 
-            playerRect = createNewRectangle(gameboard.player);
 
+            // creating player and enemys
+             playerRect = gameboard.player.createNewRectangle(playerRect,gameboard.player,myCanvas);
             enemyRect = new Rectangle[10];
             for (int i = 0; i < enemyRect.Length; i++)
             {
-                enemyRect[i] = createNewRectangle(gameboard.enemy[i]);
-                
+                enemyRect[i] = gameboard.enemy[i].createNewRectangle(enemyRect[i], gameboard.enemy[i], myCanvas);
+
             }
 
             // Player Controller
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
         }
+        //==========
     }
 }
 
