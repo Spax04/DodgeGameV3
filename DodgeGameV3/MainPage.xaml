@@ -23,6 +23,7 @@
                     <ImageBrush ImageSource="/Assets/Rules.png" Stretch="Fill"/>
                 </Rectangle.Fill>
             </Rectangle>
+            <TextBlock x:Name="txtBlock" Canvas.Left="1181" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="102"/>
 
         </Canvas>
 

@@ -23,6 +23,7 @@ using System.Windows;
 using Windows.Media.Devices;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI;
 
 namespace DodgeGameV3.Units
 {
@@ -48,6 +49,23 @@ namespace DodgeGameV3.Units
             canvas.Children.Add(rectangle);
             return rectangle;
         }
+
+        public async override void collisionCheck(Rectangle playerRectangle, UnitTool p1, UnitTool e1, Canvas myCanvas,DispatcherTimer timer)
+        {
+            if (p1._x + p1._width >= e1._x &&
+                p1._x <= e1._x + e1._width &&
+                p1._y + p1._height >= e1._y &&
+                p1._y <= e1._y + e1._height)
+
+            {
+                //style part: 
+                playerRectangle.Fill = new SolidColorBrush(Colors.Red);
+                
+                timer.Stop();
+                p1._speed = 0;
+            }
+        }
+
     }
 }
 

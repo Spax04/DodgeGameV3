@@ -30,6 +30,7 @@ namespace DodgeGameV3
         Rectangle rectangle;
         public PlayerUnit player;
         public EnemyUnit[] enemy;
+        
 
         public double _boardWidth, _boardHeight;
         Random random = new Random();

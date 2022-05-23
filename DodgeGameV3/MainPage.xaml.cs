@@ -33,17 +33,15 @@ namespace DodgeGameV3
     public sealed partial class MainPage : Page
     {
         GameBoard gameboard;
-
+        
         Rectangle playerRect;
         Rectangle[] enemyRect;
         Rectangle startMenuRect;
         DispatcherTimer timer;
+
         public bool collision = false;
         public int enemyCounter = 0;
         public int z = 0;
-
-
-
 
         public MainPage()
         {
@@ -52,37 +50,67 @@ namespace DodgeGameV3
             Rect windowRectangle = ApplicationView.GetForCurrentView().VisibleBounds;
             gameboard = new GameBoard(windowRectangle.Width, windowRectangle.Height);
             startMenuRect = startMenu(gameboard);
-
-
-
-
-
+            
         }
 
+        //btn Start game. When btn is pressed - beginig of the game.
+        private void btnStartGame_Click(object sender, RoutedEventArgs e)
+        {
+            //Removing "start menu" when btn was clicked
+            myCanvas.Children.Remove(btnStartGame);
+            myCanvas.Children.Remove(startMenuRect);
+            myCanvas.Children.Remove(gameRules);
+
+            // timer has begone
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            timer.Tick += timer_Tick;
+            timer.Start();
+
+            // creating player and enemys
+            playerRect = gameboard.player.createNewRectangle(playerRect, gameboard.player, myCanvas);
+            enemyRect = new Rectangle[10];
+            for (int i = 0; i < enemyRect.Length; i++)
+            {
+                enemyRect[i] = gameboard.enemy[i].createNewRectangle(enemyRect[i], gameboard.enemy[i], myCanvas);
+
+            }
+
+            // Player Controller
+            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
+        }
+        //==========
 
         // Timer
         private void timer_Tick(object sender, object e)
         {
+            txtBlock.Text = gameboard.player.counter.ToString();
             for (int i = 0; i < enemyRect.Length; i++)
             {
-                enemyMove(enemyRect[i], gameboard.enemy[i], gameboard.player);
+                gameboard.enemy[i].Move(enemyRect[i], gameboard.enemy[i], gameboard.player);
             }
 
-            for(int i = 0; i < enemyRect.Length; i++)
+            // enemy - enemy hit detector
+            for (int i = 0; i < enemyRect.Length; i++)
             {
-                for(int j = i +1; j< enemyRect.Length; j++)
+                for (int j = i + 1; j < enemyRect.Length; j++)
                 {
-                    collisionCheck(enemyRect[i], gameboard.enemy[i], gameboard.enemy[j]);
+
+                    gameboard.enemy[i].collisionCheck(enemyRect[i], gameboard.enemy[i], gameboard.enemy[j], myCanvas, timer); 
                 }
             }
 
-            if(enemyCounter == 9)
+            // player - enemy hit detector
+            /*for (int i = 0; i < enemyRect.Length; i++)
+            {
+                gameboard.player.collisionCheck(playerRect, gameboard.player, gameboard.enemy[i], myCanvas, timer);
+            }*/
+
+            if (gameboard.player.counter == 8)
             {
                 timer.Stop();
             }
-
         }
-
         //==================
 
         // Player Movment
@@ -91,15 +119,9 @@ namespace DodgeGameV3
             switch (e.VirtualKey)
             {
                 case VirtualKey.Left:
-                    /*if(gameboard.player._x == 0)
-                    {
-                        Canvas.SetLeft(playerRect, myCanvas.MaxWidth);
-                    }else*/
+                    
                     Canvas.SetLeft(playerRect, Canvas.GetLeft(playerRect) - gameboard.player._speed);
                     gameboard.player._x = (int)Canvas.GetLeft(playerRect) - gameboard.player._speed;
-                                        
-                        
-                    
                     break;
 
                 case VirtualKey.Right:
@@ -116,68 +138,11 @@ namespace DodgeGameV3
                     Canvas.SetTop(playerRect, Canvas.GetTop(playerRect) + gameboard.player._speed);
                     gameboard.player._y = (int)Canvas.GetTop(playerRect) + gameboard.player._speed;
                     break;
-
-
-            }
-        }
-
-        //============
-
-        //Enemy moovment
-        void enemyMove(Rectangle enemyRect, UnitTool e1, UnitTool p1)
-        {
-
-            if (e1._x > p1._x)
-            {
-                Canvas.SetLeft(enemyRect, Canvas.GetLeft(enemyRect) - e1._speed);
-                e1._x = (int)Canvas.GetLeft(enemyRect) - e1._speed;
-            }
-            if (e1._x < p1._x)
-            {
-                Canvas.SetLeft(enemyRect, Canvas.GetLeft(enemyRect) + e1._speed);
-                e1._x = (int)Canvas.GetLeft(enemyRect) + e1._speed;
-            }
-            if (e1._y > p1._y)
-            {
-                Canvas.SetTop(enemyRect, Canvas.GetTop(enemyRect) - e1._speed);
-                e1._y = (int)Canvas.GetTop(enemyRect) - e1._speed;
-            }
-            if (e1._y < p1._y)
-            {
-                Canvas.SetTop(enemyRect, Canvas.GetTop(enemyRect) + e1._speed);
-                e1._y = (int)Canvas.GetTop(enemyRect) + -e1._speed;
             }
         }
         //============
 
-        // cheking hits method
-        async void collisionCheck(Rectangle enemyRectangle, UnitTool enemyRectOne, UnitTool enemyRectTwo)
-        {
-            if (enemyRectOne._x + enemyRectOne._width >= enemyRectTwo._x &&
-                enemyRectOne._x <= enemyRectTwo._x + enemyRectTwo._width &&
-                enemyRectOne._y + enemyRectOne._height >= enemyRectTwo._y &&
-                enemyRectOne._y <= enemyRectTwo._y + enemyRectTwo._height)
-
-            {
-                //style part: 
-                enemyRectangle.Fill = new ImageBrush
-                {
-                    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/DeadFish2.png"))
-                    
-                    
-                };
-                enemyRectangle.Width = 50;
-                enemyRectangle.Height = 50;
-                enemyRectOne._speed = 0;
-
-                await Task.Delay(4000); //async pause 
-                myCanvas.Children.Remove(enemyRectangle);
-                
-            }
-        }
-        //============
-
-        // Start Menu Stings
+        // Start Menu Settings
         public Rectangle startMenu(GameBoard gb)
         {
             Rectangle startRect = new Rectangle();
@@ -196,33 +161,7 @@ namespace DodgeGameV3
         }
         //================
 
-        //btn Start game. When btn is pressed - game is begane.
-        private void btnStartGame_Click(object sender, RoutedEventArgs e) 
-        {
-            //Removing start menu while btn was clicked
-            myCanvas.Children.Remove(btnStartGame);
-            myCanvas.Children.Remove(startMenuRect);
-            myCanvas.Children.Remove(gameRules);
-
-            // timer has begone
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            timer.Tick += timer_Tick;
-            timer.Start();
-
-            // creating player and enemys
-             playerRect = gameboard.player.createNewRectangle(playerRect,gameboard.player,myCanvas);
-            enemyRect = new Rectangle[10];
-            for (int i = 0; i < enemyRect.Length; i++)
-            {
-                enemyRect[i] = gameboard.enemy[i].createNewRectangle(enemyRect[i], gameboard.enemy[i], myCanvas);
-
-            }
-
-            // Player Controller
-            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
-        }
-        //==========
+        
     }
 }
 

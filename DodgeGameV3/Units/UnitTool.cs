@@ -32,6 +32,10 @@ namespace DodgeGameV3.Units
         public int _width , _height;
         public int _speed;
         public Rectangle _rectangle;
+        public int counter = 0;
+
+
+        
 
         public UnitTool(int x,int y,int width,int height,int speed,Rectangle rectangle)
         {
@@ -43,9 +47,16 @@ namespace DodgeGameV3.Units
             this._rectangle = rectangle;
 
         }
+
+
         public virtual Rectangle createNewRectangle(Rectangle rectangle,UnitTool ut,Canvas canvas)
         {
             return rectangle;
+        }
+
+        public async virtual void collisionCheck(Rectangle rectangle, UnitTool ut1, UnitTool ut2, Canvas myCanvas,DispatcherTimer timer)
+        {
+
         }
     }
 }
