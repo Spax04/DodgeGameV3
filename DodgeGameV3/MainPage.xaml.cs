@@ -36,9 +36,11 @@ namespace DodgeGameV3
 
         Rectangle playerRect;
         Rectangle[] enemyRect;
+        Rectangle startMenuRect;
         DispatcherTimer timer;
         public bool collision = false;
         public int enemyCounter = 0;
+        public int z = 0;
 
 
 
@@ -47,7 +49,10 @@ namespace DodgeGameV3
         {
             this.InitializeComponent();
 
-            
+            Rect windowRectangle = ApplicationView.GetForCurrentView().VisibleBounds;
+            gameboard = new GameBoard(windowRectangle.Width, windowRectangle.Height);
+            startMenuRect = startMenu(gameboard);
+
 
 
 
@@ -89,6 +94,10 @@ namespace DodgeGameV3
                 case VirtualKey.Left:
                     Canvas.SetLeft(playerRect, Canvas.GetLeft(playerRect) - gameboard.player._speed);
                     gameboard.player._x = (int)Canvas.GetLeft(playerRect) - gameboard.player._speed;
+                    if(gameboard.player._x == gameboard._boardWidth) { 
+                    
+                        Canvas.SetLeft(playerRect, 0);
+                    }
                     break;
 
                 case VirtualKey.Right:
@@ -134,7 +143,7 @@ namespace DodgeGameV3
                 {
                     ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Shark.png"))
                 };
-                
+
             }
 
             Canvas.SetLeft(rectangle, ut._x);
@@ -189,6 +198,7 @@ namespace DodgeGameV3
                 {
                     ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/DeadFish2.png"))
                     
+                    
                 };
                 enemyRectangle.Width = 50;
                 enemyRectangle.Height = 50;
@@ -200,28 +210,47 @@ namespace DodgeGameV3
             }
         }
 
-        private void btnStartGame_Click(object sender, RoutedEventArgs e)
+        // Start Menu Stings
+
+        public Rectangle startMenu(GameBoard gb)
+        {
+            Rectangle startRect = new Rectangle();
+            startRect.Width = gb._boardWidth;
+            startRect.Height = gb._boardHeight;
+            startRect.Fill = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/startScreen.jpg"))
+            };
+
+            Canvas.SetLeft(startRect, myCanvas.MinWidth);
+            Canvas.SetTop(startRect, myCanvas.MinHeight);
+            myCanvas.Children.Add(startRect);
+
+            return startRect;
+        }
+
+
+        //btn Start game. When btn is pressed - game is begane.
+        private void btnStartGame_Click(object sender, RoutedEventArgs e) 
         {
             myCanvas.Children.Remove(btnStartGame);
-            myCanvas.Children.Remove(startBg);
+            myCanvas.Children.Remove(startMenuRect);
             myCanvas.Children.Remove(gameRules);
+
+           
+
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             timer.Tick += timer_Tick;
             timer.Start();
-
-
-
-
-            Rect windowRectangle = ApplicationView.GetForCurrentView().VisibleBounds;
-            gameboard = new GameBoard(windowRectangle.Width, windowRectangle.Height);
+ 
             playerRect = createNewRectangle(gameboard.player);
 
             enemyRect = new Rectangle[10];
             for (int i = 0; i < enemyRect.Length; i++)
             {
                 enemyRect[i] = createNewRectangle(gameboard.enemy[i]);
-                /*System.Threading.Thread.Sleep(5000);*/              //spawn
+                
             }
 
             // Player Controller

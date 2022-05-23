@@ -7,7 +7,7 @@ using DodgeGameV3.Units;
 
 namespace DodgeGameV3
 {
-    internal class GameBoard
+    public class GameBoard
     {
         public PlayerUnit player;
         public EnemyUnit[] enemy;
