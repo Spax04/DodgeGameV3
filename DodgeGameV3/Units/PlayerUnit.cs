@@ -29,7 +29,7 @@ namespace DodgeGameV3.Units
 {
     public class PlayerUnit : UnitTool
     {
-
+        public bool isDead = false;
         public PlayerUnit(int x, int y,Rectangle rectangle) : base(x, y, 70, 70,10,rectangle)
         {
             
@@ -42,7 +42,7 @@ namespace DodgeGameV3.Units
             rectangle.Height = ut._height;
             rectangle.Fill = new ImageBrush
             {
-                ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/diverV2-removebg-preview.png"))
+                ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/diverV2-removebg-preview (1).png"))
             };
             Canvas.SetLeft(rectangle, ut._x);
             Canvas.SetTop(rectangle, ut._y);
@@ -52,17 +52,14 @@ namespace DodgeGameV3.Units
 
         public async override void collisionCheck(Rectangle playerRectangle, UnitTool p1, UnitTool e1, Canvas myCanvas,DispatcherTimer timer)
         {
-            if (p1._x + p1._width >= e1._x &&
-                p1._x <= e1._x + e1._width &&
-                p1._y + p1._height >= e1._y &&
-                p1._y <= e1._y + e1._height)
-
+            if ((p1._x - 30) + p1._width >= e1._x &&
+                p1._x + 30 <= e1._x  + e1._width &&
+                (p1._y - 30) + p1._height  >= e1._y  &&
+                p1._y + 30 <= e1._y + e1._height)
             {
-                //style part: 
-                playerRectangle.Fill = new SolidColorBrush(Colors.Red);
-                
-                timer.Stop();
+                isDead = true;
                 p1._speed = 0;
+                
             }
         }
 

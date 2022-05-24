@@ -28,7 +28,7 @@ namespace DodgeGameV3.Units
 {
     public class EnemyUnit : UnitTool
     {
-        public bool isDead = false;
+        public bool isAlive = true;
         
         public EnemyUnit(int x, int y,Rectangle rectangle) : base(x, y, 30, 30,1,rectangle)
         {
@@ -90,7 +90,7 @@ namespace DodgeGameV3.Units
                 enemyRectangle.Width = 50;
                 enemyRectangle.Height = 50;
                 enemyRectOne._speed = 0;
-                
+                isAlive = false;
                 await Task.Delay(4000); //async pause 
                 myCanvas.Children.Remove(enemyRectangle);
                 this.counter++; 

@@ -137,9 +137,12 @@
     <Content Include="Assets\156508-sajmon_stlenhag_oushen-art-nauchnaya_fantastika-cifrovoe_iskusstvo-okean-1920x1080.jpg" />
     <Content Include="Assets\btnPause.png" />
     <Content Include="Assets\btnPlay.png" />
+    <Content Include="Assets\btnRestart.png" />
     <Content Include="Assets\btnStart.png" />
     <Content Include="Assets\DeadFish2.png" />
+    <Content Include="Assets\diverV2-removebg-preview %281%29.png" />
     <Content Include="Assets\diverV2-removebg-preview.png" />
+    <Content Include="Assets\gameover.png" />
     <Content Include="Assets\Rules.png" />
     <Content Include="Assets\Shark.png" />
     <Content Include="Assets\startScreen.jpg" />

@@ -49,5 +49,33 @@ namespace DodgeGameV3
                 enemy[i] = new EnemyUnit(random.Next(30, (int)_boardWidth - 30), random.Next(30, (int)_boardHeight - 30),rectangle);
             }
         }
+
+        public bool lostCheck(DispatcherTimer timer)
+        {
+            if(player.isDead == true)
+            {
+                timer.Stop();
+                
+            }
+            return true;
+        }
+        public void winCheck(DispatcherTimer timer,UnitTool p1)
+        {
+            int count = 0;
+
+            for(int i = 0; i < enemy.Length; i++)
+            {
+                if(enemy[i].isAlive != true)
+                {
+                    count++;
+                }
+            }
+
+            if(count == enemy.Length -1 )
+            {
+                timer.Stop();
+                p1._speed = 0;
+            }
+        }
     }
 }

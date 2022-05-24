@@ -13,27 +13,37 @@
             <Canvas.Background>
                 <ImageBrush ImageSource="/Assets/156508-sajmon_stlenhag_oushen-art-nauchnaya_fantastika-cifrovoe_iskusstvo-okean-1920x1080.jpg"/>
             </Canvas.Background>
-            <Button x:Name="btnStartGame" Content="" Canvas.Left="130" Canvas.Top="854" Height="94" Width="219" RenderTransformOrigin="0.48,0.468" Canvas.ZIndex="4" Click="btnStartGame_Click" VerticalAlignment="Top" PointerEntered="btnStartGame_PointerEntered">
+            <Button x:Name="btnStartGame" Content="" Canvas.Left="53" Canvas.Top="540" Height="94" Width="219" RenderTransformOrigin="0.48,0.468" Canvas.ZIndex="4" Click="btnStartGame_Click" VerticalAlignment="Top" >
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/btnStart.png" Stretch="Fill"/>
                 </Button.Background>
             </Button>
-            <Rectangle x:Name="gameRules" Height="524" Canvas.Left="1210" Canvas.Top="540" Width="450" Canvas.ZIndex="3">
+            <Rectangle x:Name="gameRules" Height="524" Canvas.Left="820" Canvas.Top="325" Width="450" Canvas.ZIndex="3">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Assets/Rules.png" Stretch="Fill"/>
                 </Rectangle.Fill>
             </Rectangle>
             <TextBlock x:Name="txtBlock" Canvas.Left="1181" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="102"/>
-            <Button x:Name="btnPause" Content="" Canvas.Left="1308" Canvas.Top="22" Height="99" VerticalAlignment="Top" Width="193" Click="btnPause_Click">
+            <Button x:Name="btnPause" Content="" Canvas.Left="895" Canvas.Top="21" Height="49" VerticalAlignment="Top" Width="125" Click="btnPause_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/btnPause.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btnPlay" Content="" Canvas.Left="1308" Canvas.Top="22" Height="99" Width="193" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnPlay_Click">
+            <Button x:Name="btnPlay" Content="" Canvas.Left="895" Canvas.Top="21" Height="49" Width="125" VerticalAlignment="Top" Click="btnPlay_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/btnPlay.png"/>
                 </Button.Background>
             </Button>
+            <Rectangle x:Name="gameOverMenu" Height="208" Canvas.Left="476" Stroke="Black" Canvas.Top="195" Width="328" Fill="#FFD8E99E" IsHitTestVisible="True" RadiusX="29.5" RadiusY="29.5"/>
+            <Image x:Name="gameOverImg" Height="104" Canvas.Left="508" Canvas.Top="195" Width="296" Source="/Assets/gameover.png"/>
+            <TextBlock x:Name="scoreName" Canvas.Left="510" TextWrapping="Wrap" Text="Score:" Canvas.Top="325" Height="62" Width="106" FocusVisualPrimaryBrush="#FFE01818" Foreground="#FFD11818" FontSize="36" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock x:Name="scoreResult" Canvas.Left="611" TextWrapping="Wrap" Canvas.Top="312" Height="71" Width="177" FontSize="48" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFD11818"/>
+            <Button x:Name="btnRestart" Canvas.Left="610" Canvas.Top="277" Height="29" VerticalAlignment="Top" Width="61" Click="btnRestart_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/btnRestart.png"/>
+                </Button.Background>
+            </Button>
+
 
         </Canvas>
 
