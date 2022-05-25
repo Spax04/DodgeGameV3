@@ -29,6 +29,8 @@ namespace DodgeGameV3.Units
     public class EnemyUnit : UnitTool
     {
         public bool isAlive = true;
+      
+        public int point = 10;
         
         public EnemyUnit(int x, int y,Rectangle rectangle) : base(x, y, 30, 30,1,rectangle)
         {
@@ -81,7 +83,7 @@ namespace DodgeGameV3.Units
                 enemyRectOne._y + enemyRectOne._height >= enemyRectTwo._y &&
                 enemyRectOne._y <= enemyRectTwo._y + enemyRectTwo._height)
             {
-                
+                scroeBoard += point;
                 //style part: 
                 enemyRectangle.Fill = new ImageBrush
                 {
@@ -93,8 +95,6 @@ namespace DodgeGameV3.Units
                 isAlive = false;
                 await Task.Delay(4000); //async pause 
                 myCanvas.Children.Remove(enemyRectangle);
-                this.counter++; 
-
             }
         }
 

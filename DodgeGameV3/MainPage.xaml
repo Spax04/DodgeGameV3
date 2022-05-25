@@ -13,28 +13,27 @@
             <Canvas.Background>
                 <ImageBrush ImageSource="/Assets/156508-sajmon_stlenhag_oushen-art-nauchnaya_fantastika-cifrovoe_iskusstvo-okean-1920x1080.jpg"/>
             </Canvas.Background>
-            <Button x:Name="btnStartGame" Content="" Canvas.Left="53" Canvas.Top="540" Height="94" Width="219" RenderTransformOrigin="0.48,0.468" Canvas.ZIndex="4" Click="btnStartGame_Click" VerticalAlignment="Top" >
+            <Button x:Name="btnStartGame" Content="" Canvas.Left="56" Canvas.Top="921" Height="94" Width="219" RenderTransformOrigin="0.48,0.468" Canvas.ZIndex="4" Click="btnStartGame_Click" VerticalAlignment="Top" >
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/btnStart.png" Stretch="Fill"/>
                 </Button.Background>
             </Button>
-            <Rectangle x:Name="gameRules" Height="524" Canvas.Left="820" Canvas.Top="325" Width="450" Canvas.ZIndex="3">
+            <Rectangle x:Name="gameRules" Height="524" Canvas.Left="1417" Canvas.Top="587" Width="450" Canvas.ZIndex="3">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Assets/Rules.png" Stretch="Fill"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock x:Name="txtBlock" Canvas.Left="1181" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="102"/>
-            <Button x:Name="btnPause" Content="" Canvas.Left="895" Canvas.Top="21" Height="49" VerticalAlignment="Top" Width="125" Click="btnPause_Click">
+            <Button x:Name="btnPause" Content="" Canvas.Left="1363" Canvas.Top="52" Height="49" VerticalAlignment="Top" Width="125" Click="btnPause_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/btnPause.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btnPlay" Content="" Canvas.Left="895" Canvas.Top="21" Height="49" Width="125" VerticalAlignment="Top" Click="btnPlay_Click">
+            <Button x:Name="btnPlay" Content="" Canvas.Left="1363" Canvas.Top="52" Height="49" Width="125" VerticalAlignment="Top" Click="btnPlay_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/btnPlay.png"/>
                 </Button.Background>
             </Button>
-            <Rectangle x:Name="gameOverMenu" Height="208" Canvas.Left="476" Stroke="Black" Canvas.Top="195" Width="328" Fill="#FFD8E99E" IsHitTestVisible="True" RadiusX="29.5" RadiusY="29.5"/>
+            <Rectangle x:Name="gameOverMenu" Height="208" Canvas.Left="476" Stroke="Black" Canvas.Top="195" Width="328" Fill="#FFD8E99E" IsHitTestVisible="True" RadiusX="29.5" RadiusY="29.5" FocusVisualPrimaryBrush="#FFF9CF1E"/>
             <Image x:Name="gameOverImg" Height="104" Canvas.Left="508" Canvas.Top="195" Width="296" Source="/Assets/gameover.png"/>
             <TextBlock x:Name="scoreName" Canvas.Left="510" TextWrapping="Wrap" Text="Score:" Canvas.Top="325" Height="62" Width="106" FocusVisualPrimaryBrush="#FFE01818" Foreground="#FFD11818" FontSize="36" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <TextBlock x:Name="scoreResult" Canvas.Left="611" TextWrapping="Wrap" Canvas.Top="312" Height="71" Width="177" FontSize="48" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFD11818"/>
@@ -43,6 +42,18 @@
                     <ImageBrush ImageSource="/Assets/btnRestart.png"/>
                 </Button.Background>
             </Button>
+            <Rectangle x:Name="lvlSpace" Height="160" Canvas.Left="21.059" Stroke="Black" Canvas.Top="17.002" Width="180" Fill="#FFD8E99E" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" RadiusX="16.051" RadiusY="16.051">
+                <Rectangle.RenderTransform>
+                    <CompositeTransform Rotation="-0.076"/>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <TextBlock x:Name="lvlTxt" Canvas.Left="28" TextWrapping="Wrap" Text="LEVEL" Canvas.Top="36" Height="63" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" FontWeight="Normal" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" FontStyle="Italic"/>
+            <TextBlock x:Name="scoreTxt" Canvas.Left="56" TextWrapping="Wrap" Text="Your score" Canvas.Top="96" Height="27" Width="106" FontSize="20" FontWeight="Bold" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBlock x:Name="currentLvl" Canvas.Left="132" TextWrapping="Wrap" Text="12" Canvas.Top="26" HorizontalAlignment="Center" Height="59" VerticalAlignment="Center" Width="60" FontSize="48" Foreground="#FFD12621" FontWeight="Bold" FontStyle="Italic"/>
+            <TextBlock x:Name="currentScore" Canvas.Left="56" TextWrapping="Wrap" Text="" Canvas.Top="128" Height="27" Width="106" FontSize="20" FontWeight="Bold" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextAlignment="Center"/>
+            <Image x:Name="heart3" Height="100" Canvas.Left="1760" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="26"/>
+            <Image x:Name="heart2" Height="100" Canvas.Left="1660" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="26"/>
+            <Image x:Name="heart1" Height="100" Canvas.Left="1560" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="26" RenderTransformOrigin="0.235,0.535"/>
 
 
         </Canvas>

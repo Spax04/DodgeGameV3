@@ -30,6 +30,10 @@ namespace DodgeGameV3
         Rectangle rectangle;
         public PlayerUnit player;
         public EnemyUnit[] enemy;
+        public int lvlCounter = 1;
+        public int scoreCounter = 0;
+        public int point = 10;
+        public bool isLost = false;
         
 
         public double _boardWidth, _boardHeight;
@@ -50,32 +54,86 @@ namespace DodgeGameV3
             }
         }
 
-        public bool lostCheck(DispatcherTimer timer)
+        public void lostCheck(DispatcherTimer timer)
         {
-            if(player.isDead == true)
+           /* if(player.isDead == true)
             {
+                isLost = true;
                 timer.Stop();
-                
+            }*/
+
+            if(player.heartCounter == 0)
+            {
+                isLost = true;
+                timer.Stop();
             }
-            return true;
+            
         }
         public void winCheck(DispatcherTimer timer,UnitTool p1)
         {
             int count = 0;
+            
 
             for(int i = 0; i < enemy.Length; i++)
             {
                 if(enemy[i].isAlive != true)
                 {
+                    int a = count;
                     count++;
+                    if(count > a)
+                    {
+                        scoreCounter += point;
+                    }
                 }
             }
 
             if(count == enemy.Length -1 )
             {
-                timer.Stop();
                 p1._speed = 0;
+               lvlCounter++;
+                timer.Stop();
+            }
+            
+        }
+
+        public void lvlGrowing()
+        {
+            if(lvlCounter >= 2)
+            for(int i = 0; i < enemy.Length; i++)
+            {
+                enemy[i]._speed = lvlCounter / 2;
             }
         }
+
+        public void scoreCheck(TextBlock text)
+        {
+            for(int i = 0; i < enemy.Length; i++)
+            {
+                text.Text = enemy[i].scroeBoard.ToString();
+            }
+        }
+
+        public  void heartCheck(Canvas myCanvas,Image h1,Image h2,Image h3)
+        {
+            switch (player.heartCounter)
+            {
+                case 2:
+                    myCanvas.Children.Remove(h1);
+                    
+                    break;
+                case 1:
+                    myCanvas.Children.Remove(h2);
+                    
+                    break;
+                case 0:
+                    myCanvas.Children.Remove(h3);
+                    
+                    break;
+            }
+        }
+        
+
+       
+       
     }
 }

@@ -26,16 +26,23 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace DodgeGameV3.Units
 {
+   
     public class UnitTool
     {
         public int _x, _y;
         public int _width , _height;
         public int _speed;
         public Rectangle _rectangle;
-        public int counter = 0;
+        public int scroeBoard;
 
 
         
+
+        
+        
+
+
+
 
         public UnitTool(int x,int y,int width,int height,int speed,Rectangle rectangle)
         {
@@ -45,6 +52,7 @@ namespace DodgeGameV3.Units
             _height = height;
             _speed = speed;
             this._rectangle = rectangle;
+            
 
         }
 

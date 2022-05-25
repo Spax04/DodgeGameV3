@@ -30,8 +30,10 @@ namespace DodgeGameV3.Units
     public class PlayerUnit : UnitTool
     {
         public bool isDead = false;
+        public int heartCounter = 3;
         public PlayerUnit(int x, int y,Rectangle rectangle) : base(x, y, 70, 70,10,rectangle)
         {
+            
             
         }
 
@@ -57,9 +59,11 @@ namespace DodgeGameV3.Units
                 (p1._y - 30) + p1._height  >= e1._y  &&
                 p1._y + 30 <= e1._y + e1._height)
             {
+                heartCounter -= 1;
+                
                 isDead = true;
                 p1._speed = 0;
-                
+
             }
         }
 
