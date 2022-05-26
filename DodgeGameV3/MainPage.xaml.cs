@@ -55,6 +55,7 @@ namespace DodgeGameV3
 
 
             gameboard.scoreCheck(currentScore);
+            txtBlock.Text = gameboard.player.heartCounter.ToString();
         }
 
         //btn Start game. When btn is pressed - the game is begine.
@@ -90,7 +91,7 @@ namespace DodgeGameV3
         //==========
        
         // Timer
-        private void timer_Tick(object sender, object e)
+        private async void timer_Tick(object sender, object e)
         {
             
             for (int i = 0; i < enemyRect.Length; i++)
@@ -103,18 +104,15 @@ namespace DodgeGameV3
             {
                 for (int j = i + 1; j < enemyRect.Length; j++)
                 {
-
                     gameboard.enemy[i].collisionCheck(enemyRect[i], gameboard.enemy[i], gameboard.enemy[j], myCanvas, timer); 
                 }
             }
 
             // player - enemy hit detector
-
-            for (int i = 0; i < enemyRect.Length; i++)
-            {
-                gameboard.player.collisionCheck(playerRect, gameboard.player, gameboard.enemy[i],myCanvas,timer);
-                
-            }
+                for (int i = 0; i < enemyRect.Length; i++)
+                {
+                    gameboard.player.collisionCheck(playerRect, gameboard.player, gameboard.enemy[i], myCanvas, timer);
+                }
 
 
             gameboard.winCheck(timer,gameboard.player);
@@ -123,16 +121,17 @@ namespace DodgeGameV3
            
 
 
-            gameboard.lostCheck(timer);
-            if(gameboard.isLost == true)
+            gameboard.lostCheck(timer,gameboard.player);
+            if (gameboard.isLost == true)
             {
                 gameOver();
             }
 
-            gameboard.heartCheck(myCanvas, heart1, heart2, heart3);
+            /*gameboard.heartCheck(myCanvas, heart1, heart2, heart3);*/
 
             currentLvl.Text = gameboard.lvlCounter.ToString();
-            
+
+            gameboard.boarderCollisionCheck(playerRect,gameboard.player,myCanvas );
         }
         //==================
 

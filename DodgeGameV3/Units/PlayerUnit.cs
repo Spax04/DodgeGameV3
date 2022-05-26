@@ -54,15 +54,14 @@ namespace DodgeGameV3.Units
 
         public async override void collisionCheck(Rectangle playerRectangle, UnitTool p1, UnitTool e1, Canvas myCanvas,DispatcherTimer timer)
         {
+            
             if ((p1._x - 30) + p1._width >= e1._x &&
                 p1._x + 30 <= e1._x  + e1._width &&
                 (p1._y - 30) + p1._height  >= e1._y  &&
                 p1._y + 30 <= e1._y + e1._height)
             {
-                heartCounter -= 1;
-                
-                isDead = true;
-                p1._speed = 0;
+              
+                    isDead = true;
 
             }
         }

@@ -92,9 +92,13 @@ namespace DodgeGameV3.Units
                 enemyRectangle.Width = 50;
                 enemyRectangle.Height = 50;
                 enemyRectOne._speed = 0;
+              
                 isAlive = false;
                 await Task.Delay(4000); //async pause 
+
                 myCanvas.Children.Remove(enemyRectangle);
+                Canvas.SetLeft(enemyRectangle, 0);
+                Canvas.SetTop(enemyRectangle, 0);
             }
         }
 

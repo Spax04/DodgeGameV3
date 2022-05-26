@@ -13,22 +13,22 @@
             <Canvas.Background>
                 <ImageBrush ImageSource="/Assets/156508-sajmon_stlenhag_oushen-art-nauchnaya_fantastika-cifrovoe_iskusstvo-okean-1920x1080.jpg"/>
             </Canvas.Background>
-            <Button x:Name="btnStartGame" Content="" Canvas.Left="56" Canvas.Top="921" Height="94" Width="219" RenderTransformOrigin="0.48,0.468" Canvas.ZIndex="4" Click="btnStartGame_Click" VerticalAlignment="Top" >
+            <Button x:Name="btnStartGame" Content="" Canvas.Left="56" Canvas.Top="564" Height="94" Width="219" RenderTransformOrigin="0.48,0.468" Canvas.ZIndex="4" Click="btnStartGame_Click" VerticalAlignment="Top" HorizontalAlignment="Center" >
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/btnStart.png" Stretch="Fill"/>
                 </Button.Background>
             </Button>
-            <Rectangle x:Name="gameRules" Height="524" Canvas.Left="1417" Canvas.Top="587" Width="450" Canvas.ZIndex="3">
+            <Rectangle x:Name="gameRules" Height="524" Canvas.Left="830" Canvas.Top="349" Width="450" Canvas.ZIndex="3">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="/Assets/Rules.png" Stretch="Fill"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Button x:Name="btnPause" Content="" Canvas.Left="1363" Canvas.Top="52" Height="49" VerticalAlignment="Top" Width="125" Click="btnPause_Click">
+            <Button x:Name="btnPause" Content="" Canvas.Left="830" Canvas.Top="76" Height="49" VerticalAlignment="Top" Width="125" Click="btnPause_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/btnPause.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btnPlay" Content="" Canvas.Left="1363" Canvas.Top="52" Height="49" Width="125" VerticalAlignment="Top" Click="btnPlay_Click">
+            <Button x:Name="btnPlay" Content="" Canvas.Left="830" Canvas.Top="60" Height="49" Width="125" VerticalAlignment="Top" Click="btnPlay_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/btnPlay.png"/>
                 </Button.Background>
@@ -51,9 +51,10 @@
             <TextBlock x:Name="scoreTxt" Canvas.Left="56" TextWrapping="Wrap" Text="Your score" Canvas.Top="96" Height="27" Width="106" FontSize="20" FontWeight="Bold" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBlock x:Name="currentLvl" Canvas.Left="132" TextWrapping="Wrap" Text="12" Canvas.Top="26" HorizontalAlignment="Center" Height="59" VerticalAlignment="Center" Width="60" FontSize="48" Foreground="#FFD12621" FontWeight="Bold" FontStyle="Italic"/>
             <TextBlock x:Name="currentScore" Canvas.Left="56" TextWrapping="Wrap" Text="" Canvas.Top="128" Height="27" Width="106" FontSize="20" FontWeight="Bold" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextAlignment="Center"/>
-            <Image x:Name="heart3" Height="100" Canvas.Left="1760" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="26"/>
-            <Image x:Name="heart2" Height="100" Canvas.Left="1660" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="26"/>
-            <Image x:Name="heart1" Height="100" Canvas.Left="1560" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="26" RenderTransformOrigin="0.235,0.535"/>
+            <Image x:Name="heart3" Height="100" Canvas.Left="1180" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="41"/>
+            <Image x:Name="heart2" Height="100" Canvas.Left="1080" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="41"/>
+            <Image x:Name="heart1" Height="100" Canvas.Left="975" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="41" RenderTransformOrigin="0.235,0.535"/>
+            <TextBlock x:Name="txtBlock" Canvas.Left="343" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="116" Height="39" Width="104" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
 
         </Canvas>

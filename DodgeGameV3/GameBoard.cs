@@ -54,20 +54,21 @@ namespace DodgeGameV3
             }
         }
 
-        public void lostCheck(DispatcherTimer timer)
+        public void lostCheck(DispatcherTimer timer,UnitTool p1)
         {
-           /* if(player.isDead == true)
-            {
-                isLost = true;
-                timer.Stop();
-            }*/
-
-            if(player.heartCounter == 0)
+            if (player.isDead == true)
             {
                 isLost = true;
                 timer.Stop();
             }
-            
+
+            /*if (player.heartCounter == 0)
+            {
+                p1._speed = 0;
+                isLost = true;
+                timer.Stop();
+            }*/
+
         }
         public void winCheck(DispatcherTimer timer,UnitTool p1)
         {
@@ -113,27 +114,26 @@ namespace DodgeGameV3
             }
         }
 
-        public  void heartCheck(Canvas myCanvas,Image h1,Image h2,Image h3)
+        public void boarderCollisionCheck(Rectangle rect,UnitTool ut,Canvas myCanvas)
         {
-            switch (player.heartCounter)
+            if(ut._x  < 0)
             {
-                case 2:
-                    myCanvas.Children.Remove(h1);
-                    
-                    break;
-                case 1:
-                    myCanvas.Children.Remove(h2);
-                    
-                    break;
-                case 0:
-                    myCanvas.Children.Remove(h3);
-                    
-                    break;
+                ut._x = (int)_boardWidth;  
+                Canvas.SetLeft(rect, ut._x);
+            }
+            else if (ut._x  > _boardWidth)
+            {
+                ut._x = 0;
+                Canvas.SetLeft(rect, ut._x);
+            }else if(ut._y < 0)
+            {
+                ut._y = (int)_boardHeight;
+                Canvas.SetTop(rect, ut._y);
+            }else if(ut._y > _boardHeight)
+            {
+                ut._y = 0;
+                Canvas.SetTop(rect,ut._y);
             }
         }
-        
-
-       
-       
     }
 }
