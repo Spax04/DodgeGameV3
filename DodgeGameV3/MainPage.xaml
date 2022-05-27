@@ -23,7 +23,7 @@
                     <ImageBrush ImageSource="/Assets/Rules.png" Stretch="Fill"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Button x:Name="btnPause" Content="" Canvas.Left="830" Canvas.Top="76" Height="49" VerticalAlignment="Top" Width="125" Click="btnPause_Click">
+            <Button x:Name="btnPause" Content="" Canvas.Left="830" Canvas.Top="61" Height="49" VerticalAlignment="Top" Width="125" Click="btnPause_Click" HorizontalAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/btnPause.png"/>
                 </Button.Background>
@@ -51,9 +51,9 @@
             <TextBlock x:Name="scoreTxt" Canvas.Left="56" TextWrapping="Wrap" Text="Your score" Canvas.Top="96" Height="27" Width="106" FontSize="20" FontWeight="Bold" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBlock x:Name="currentLvl" Canvas.Left="132" TextWrapping="Wrap" Text="12" Canvas.Top="26" HorizontalAlignment="Center" Height="59" VerticalAlignment="Center" Width="60" FontSize="48" Foreground="#FFD12621" FontWeight="Bold" FontStyle="Italic"/>
             <TextBlock x:Name="currentScore" Canvas.Left="56" TextWrapping="Wrap" Text="" Canvas.Top="128" Height="27" Width="106" FontSize="20" FontWeight="Bold" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextAlignment="Center"/>
-            <Image x:Name="heart3" Height="100" Canvas.Left="1180" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="41"/>
-            <Image x:Name="heart2" Height="100" Canvas.Left="1080" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="41"/>
-            <Image x:Name="heart1" Height="100" Canvas.Left="975" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="41" RenderTransformOrigin="0.235,0.535"/>
+            <Image x:Name="heart3" Height="100" Canvas.Left="1828" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="36"/>
+            <Image x:Name="heart2" Height="100" Canvas.Left="1728" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="36"/>
+            <Image x:Name="heart1" Height="100" Canvas.Left="1623" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="36" RenderTransformOrigin="0.235,0.535"/>
             <TextBlock x:Name="txtBlock" Canvas.Left="343" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="116" Height="39" Width="104" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
 

@@ -22,6 +22,7 @@ using Windows.UI.Xaml.Shapes;
 using System.Windows;
 using Windows.Media.Devices;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace DodgeGameV3
 {
@@ -31,8 +32,6 @@ namespace DodgeGameV3
         public PlayerUnit player;
         public EnemyUnit[] enemy;
         public int lvlCounter = 1;
-        public int scoreCounter = 0;
-        public int point = 10;
         public bool isLost = false;
         
 
@@ -44,7 +43,7 @@ namespace DodgeGameV3
             this._boardWidth = boardWidth;
             this._boardHeight = boardHeight;
 
-            player = new PlayerUnit((int)_boardWidth / 2, (int)_boardHeight / 2,rectangle);
+            player = new PlayerUnit((int)_boardWidth / 2, (int)_boardHeight / 2,rectangle,3);
 
             enemy = new EnemyUnit[10];
 
@@ -61,40 +60,76 @@ namespace DodgeGameV3
                 isLost = true;
                 timer.Stop();
             }
-
-            /*if (player.heartCounter == 0)
-            {
-                p1._speed = 0;
-                isLost = true;
-                timer.Stop();
-            }*/
-
         }
+
         public void winCheck(DispatcherTimer timer,UnitTool p1)
         {
             int count = 0;
-            
-
             for(int i = 0; i < enemy.Length; i++)
             {
                 if(enemy[i].isAlive != true)
                 {
-                    int a = count;
-                    count++;
-                    if(count > a)
-                    {
-                        scoreCounter += point;
-                    }
+                    count++; 
                 }
             }
 
             if(count == enemy.Length -1 )
             {
-                p1._speed = 0;
+               
                lvlCounter++;
                 timer.Stop();
             }
             
+        }
+
+        public async void livesCheck(Rectangle playerRec,UnitTool p1,Canvas myCanvas,DispatcherTimer timer)
+        {
+            switch (player._lives)
+            {
+                case 3:
+                    for (int i = 0; i < enemy.Length; i++)
+                    {
+                        player.collisionCheck(playerRec, player, enemy[i], myCanvas, timer);
+                        if (player._lives == 2)
+                        {
+                            timer.Stop();
+                            Task.Delay(5000);
+                            timer.Start();
+                            break;
+                        }
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < enemy.Length; i++)
+                    {
+                        player.collisionCheck(playerRec, player, enemy[i], myCanvas, timer);
+                        if (player._lives == 1)
+                        {
+                            timer.Stop();
+                            Task.Delay(5000);
+                            timer.Start();
+                            break;
+                        }
+                    }
+                    break;
+                case 1:
+                    for (int i = 0; i < enemy.Length; i++)
+                    {
+                        player.collisionCheck(playerRec, player, enemy[i], myCanvas, timer);
+                        if (player._lives == 0)
+                        {
+                            timer.Stop();
+                            Task.Delay(5000);
+                            timer.Start();
+                            break;
+                        }
+                    }
+                    break;
+            }
+            if (player._lives == 0)
+            {
+                lostCheck(timer, p1);
+            }
         }
 
         public void lvlGrowing()

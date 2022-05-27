@@ -35,15 +35,6 @@ namespace DodgeGameV3.Units
         public Rectangle _rectangle;
         public int scroeBoard;
 
-
-        
-
-        
-        
-
-
-
-
         public UnitTool(int x,int y,int width,int height,int speed,Rectangle rectangle)
         {
             _x = x;
@@ -52,10 +43,7 @@ namespace DodgeGameV3.Units
             _height = height;
             _speed = speed;
             this._rectangle = rectangle;
-            
-
         }
-
 
         public virtual Rectangle createNewRectangle(Rectangle rectangle,UnitTool ut,Canvas canvas)
         {

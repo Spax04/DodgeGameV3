@@ -30,11 +30,10 @@ namespace DodgeGameV3.Units
     public class PlayerUnit : UnitTool
     {
         public bool isDead = false;
-        public int heartCounter = 3;
-        public PlayerUnit(int x, int y,Rectangle rectangle) : base(x, y, 70, 70,10,rectangle)
+        public int _lives;
+        public PlayerUnit(int x, int y,Rectangle rectangle,int lives) : base(x, y, 70, 70,10,rectangle)
         {
-            
-            
+            this._lives = lives;
         }
 
         public override Rectangle createNewRectangle(Rectangle rectangle,UnitTool ut,Canvas canvas)
@@ -54,15 +53,18 @@ namespace DodgeGameV3.Units
 
         public async override void collisionCheck(Rectangle playerRectangle, UnitTool p1, UnitTool e1, Canvas myCanvas,DispatcherTimer timer)
         {
-            
             if ((p1._x - 30) + p1._width >= e1._x &&
                 p1._x + 30 <= e1._x  + e1._width &&
                 (p1._y - 30) + p1._height  >= e1._y  &&
                 p1._y + 30 <= e1._y + e1._height)
             {
-              
+                _lives--;
+                if(_lives == 0)
+                {
+                    p1._speed = 0;
                     isDead = true;
-
+                }
+                
             }
         }
 
