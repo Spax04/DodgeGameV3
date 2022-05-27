@@ -30,7 +30,7 @@ namespace DodgeGameV3.Units
     {
         public bool isAlive = true;
 
-        public EnemyUnit(int x, int y,Rectangle rectangle) : base(x, y, 30, 30,1,rectangle)
+        public EnemyUnit(int x, int y,Rectangle rectangle,int points,int scoreboard) : base(x, y, 30, 30,1,rectangle)
         {
             
         }

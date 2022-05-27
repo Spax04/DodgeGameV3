@@ -28,6 +28,7 @@ using System.Threading.Tasks;
 
 
 using Windows.UI.Xaml.Media.Imaging;
+using System.Threading;
 
 namespace DodgeGameV3
 {
@@ -41,6 +42,9 @@ namespace DodgeGameV3
         Rectangle startMenuRect;
         DispatcherTimer timer;
 
+        public int scorePad = 0;
+        
+
         
        
 
@@ -52,7 +56,7 @@ namespace DodgeGameV3
             gameboard = new GameBoard(windowRectangle.Width, windowRectangle.Height);
             startMenuRect = startMenu(gameboard);
 
-            gameboard.scoreCheck(currentScore);
+            
            
         }
 
@@ -63,9 +67,14 @@ namespace DodgeGameV3
             myCanvas.Children.Remove(btnStartGame);
             myCanvas.Children.Remove(startMenuRect);
             myCanvas.Children.Remove(gameRules);
+            
 
             myCanvas.Children.Add(btnPause);
-                
+            myCanvas.Children.Add(heart1);
+            myCanvas.Children.Add(heart2);
+            myCanvas.Children.Add(heart3);
+
+
             // timer has begone
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -104,10 +113,13 @@ namespace DodgeGameV3
             }
 
             // player - enemy hit detector
+            for(int i = 0; i < enemyRect.Length; i++)
+            {
+                gameboard.livesCheck(playerRect,enemyRect[i], gameboard.player, myCanvas, timer,gotcha);
+            }
             
-            gameboard.livesCheck(playerRect,gameboard.player,myCanvas,timer);
-            txtBlock.Text = gameboard.player._lives.ToString();
-            gameboard.winCheck(timer,gameboard.player);
+            
+            gameboard.winCheck(timer,gameboard.player,myCanvas,btnNext);
 
             if (gameboard.isLost == true)
             {
@@ -117,6 +129,27 @@ namespace DodgeGameV3
             currentLvl.Text = gameboard.lvlCounter.ToString();
             gameboard.lvlGrowing();
             gameboard.boarderCollisionCheck(playerRect,gameboard.player,myCanvas );
+
+            //hearts
+            if(gameboard.player._lives == 2)
+            {
+                myCanvas.Children.Remove(heart1);
+
+            }else if(gameboard.player._lives == 1)
+            {
+                myCanvas.Children.Remove(heart2);
+            }else if(gameboard.player._lives == 0)
+            {
+                myCanvas.Children.Remove(heart3);
+            }
+            //=======
+            
+            currentScore.Text = gameboard.scorere.ToString();
+
+            scoreResult.Text = gameboard.scorere.ToString();
+            
+            gameboard.scoreCheck(scorePad);
+            txtBlock.Text = scorePad.ToString();
         }
         //==================
 
@@ -152,15 +185,22 @@ namespace DodgeGameV3
         // Start Menu Settings
         public Rectangle startMenu(GameBoard gb)
         {
-            // pause/play buttons removing
+            // pause/play/next buttons removing
             myCanvas.Children.Remove(btnPause);
             myCanvas.Children.Remove(btnPlay);
+            myCanvas.Children.Remove(btnNext);
+
 
             //gameover menu 
             myCanvas.Children.Remove(gameOverMenu);
             myCanvas.Children.Remove(gameOverImg);
             myCanvas.Children.Remove(scoreName);
             myCanvas.Children.Remove(btnRestart);
+            myCanvas.Children.Remove(scoreResult);
+            myCanvas.Children.Remove(heart1);
+            myCanvas.Children.Remove(heart2);
+            myCanvas.Children.Remove(heart3);
+            myCanvas.Children.Remove(gotcha);
 
 
             Rectangle startRect = new Rectangle();
@@ -202,13 +242,19 @@ namespace DodgeGameV3
             timer.Start();
         }
 
+        // GAME OVER
         void gameOver()
         {
             myCanvas.Children.Add(gameOverMenu);
             myCanvas.Children.Add(gameOverImg);
             myCanvas.Children.Add(scoreName);
             myCanvas.Children.Add(btnRestart);
+            myCanvas.Children.Add(scoreResult);
+            
+
         }
+        //=======================
+
 
         //----------------BUTTONS---------------
 
@@ -232,6 +278,38 @@ namespace DodgeGameV3
             timer.Start();
             myCanvas.Children.Remove(btnPlay);
             myCanvas.Children.Add(btnPause);
+        }
+
+        public void removeUnits()
+        {
+            
+            myCanvas.Children.Remove(playerRect);
+            
+            for(int i = 0; i < enemyRect.Length; i++)
+            {
+                myCanvas.Children.Remove(enemyRect[i]);
+            }
+        }
+
+        public void addUnits()
+        {
+            playerRect = gameboard.player.createNewRectangle(playerRect, gameboard.player, myCanvas);
+            enemyRect = new Rectangle[10];
+            for (int i = 0; i < enemyRect.Length; i++)
+            {
+                enemyRect[i] = gameboard.enemy[i].createNewRectangle(enemyRect[i], gameboard.enemy[i], myCanvas);
+            }
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            gameboard.lvlCounter++;
+            
+            removeUnits();
+            gameboard.CreatingUnits();
+            addUnits();
+            timer.Start();
+            
         }
     }
 }
