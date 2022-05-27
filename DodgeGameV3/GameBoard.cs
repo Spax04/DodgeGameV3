@@ -82,10 +82,11 @@ namespace DodgeGameV3
             }
         }
 
-        public void winCheck(DispatcherTimer timer,UnitTool p1,Canvas myCnavas, Button btn)
+        public int winCheck(DispatcherTimer timer,UnitTool p1,Canvas myCnavas, Button btn,int scoreSave)
         {
             int count = 0;
-            for(int i = 0; i < enemy.Length; i++)
+            
+            for (int i = 0; i < enemy.Length; i++)
             {
                 if(enemy[i].isAlive != true)
                 {
@@ -96,13 +97,16 @@ namespace DodgeGameV3
 
             if (count == enemy.Length -1 )
             {
+                scoreSave = scorere;
                 player._speed = 0;
                 myCnavas.Children.Add(btn);
                 timer.Stop();
             }
+
+            return scoreSave;
         }
 
-        public void scoreCheck(int outP)
+        public void scoreCheck()
         {
             
             for (int i = 0; i < enemy.Length; i++)
@@ -113,7 +117,7 @@ namespace DodgeGameV3
                 }
             }
             scorere = countS * (point + bonus);
-            outP = scorere;
+           
         }
 
         public async void livesCheck(Rectangle playerRec,Rectangle enemyRec,UnitTool p1,Canvas myCanvas,DispatcherTimer timer,Image shark)

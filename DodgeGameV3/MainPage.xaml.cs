@@ -119,7 +119,7 @@ namespace DodgeGameV3
             }
             
             
-            gameboard.winCheck(timer,gameboard.player,myCanvas,btnNext);
+            scorePad = gameboard.winCheck(timer,gameboard.player,myCanvas,btnNext,scorePad);  // Нужно вернуть значение!!!!!!!
 
             if (gameboard.isLost == true)
             {
@@ -148,8 +148,9 @@ namespace DodgeGameV3
 
             scoreResult.Text = gameboard.scorere.ToString();
             
-            gameboard.scoreCheck(scorePad);
+            gameboard.scoreCheck();
             txtBlock.Text = scorePad.ToString();
+            
         }
         //==================
 
@@ -280,6 +281,16 @@ namespace DodgeGameV3
             myCanvas.Children.Add(btnPause);
         }
 
+        // NEXT BUTTON
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            gameboard.lvlCounter++;          
+            removeUnits();
+            gameboard.CreatingUnits();
+            addUnits();  
+            timer.Start();
+        }
+        //=================================================================
         public void removeUnits()
         {
             
@@ -301,16 +312,7 @@ namespace DodgeGameV3
             }
         }
 
-        private void btnNext_Click(object sender, RoutedEventArgs e)
-        {
-            gameboard.lvlCounter++;
-            
-            removeUnits();
-            gameboard.CreatingUnits();
-            addUnits();
-            timer.Start();
-            
-        }
+        
     }
 }
 
