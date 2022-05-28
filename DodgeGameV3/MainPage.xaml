@@ -42,15 +42,17 @@
                     <ImageBrush ImageSource="/Assets/btnRestart.png"/>
                 </Button.Background>
             </Button>
-            <Rectangle x:Name="lvlSpace" Height="160" Canvas.Left="21.059" Stroke="Black" Canvas.Top="17.002" Width="180" Fill="#FFD8E99E" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" RadiusX="16.051" RadiusY="16.051">
+            <Rectangle x:Name="lvlSpace" Height="160" Canvas.Left="77.059" Stroke="Black" Canvas.Top="53.046" Width="114" Fill="#FFD8E99E" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" RadiusX="16.051" RadiusY="16.051">
                 <Rectangle.RenderTransform>
                     <CompositeTransform Rotation="-0.076"/>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <TextBlock x:Name="lvlTxt" Canvas.Left="28" TextWrapping="Wrap" Text="LEVEL" Canvas.Top="36" Height="63" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="36" FontWeight="Normal" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" FontStyle="Italic"/>
-            <TextBlock x:Name="scoreTxt" Canvas.Left="56" TextWrapping="Wrap" Text="Your score" Canvas.Top="96" Height="27" Width="106" FontSize="20" FontWeight="Bold" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBlock x:Name="currentLvl" Canvas.Left="132" TextWrapping="Wrap" Text="12" Canvas.Top="26" HorizontalAlignment="Center" Height="59" VerticalAlignment="Center" Width="60" FontSize="48" Foreground="#FFD12621" FontWeight="Bold" FontStyle="Italic"/>
-            <TextBlock x:Name="currentScore" Canvas.Left="56" TextWrapping="Wrap" Text="" Canvas.Top="128" Height="27" Width="106" FontSize="20" FontWeight="Bold" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextAlignment="Center"/>
+            <TextBlock x:Name="lvlTxt" Canvas.Left="84" TextWrapping="Wrap" Text="LEVEL" Canvas.Top="72" Height="63" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="36" FontWeight="Normal" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" FontStyle="Italic"/>
+            <TextBlock x:Name="currentLvl" Canvas.Left="102" TextWrapping="Wrap" Text="12" Canvas.Top="127" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="60" FontSize="48" Foreground="#FFD12621" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform SkewY="0" TranslateY="0"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
             <Image x:Name="heart3" Height="100" Canvas.Left="1828" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="36"/>
             <Image x:Name="heart2" Height="100" Canvas.Left="1728" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="36"/>
             <Image x:Name="heart1" Height="100" Canvas.Left="1623" Width="100" Source="/Assets/heard.png" Stretch="Fill" Canvas.Top="36" RenderTransformOrigin="0.235,0.535"/>
@@ -61,7 +63,6 @@
                     <ImageBrush ImageSource="/Assets/btnNext.png"/>
                 </Button.Background>
             </Button>
-            <TextBlock x:Name="txtBlock" Canvas.Left="372" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="226" Height="65" Width="126" FontSize="22"/>
 
 
         </Canvas>

@@ -43,10 +43,7 @@ namespace DodgeGameV3
         DispatcherTimer timer;
 
         public int scorePad = 0;
-        
-
-        
-       
+        public int totalResult;
 
         public MainPage()
         {
@@ -56,8 +53,6 @@ namespace DodgeGameV3
             gameboard = new GameBoard(windowRectangle.Width, windowRectangle.Height);
             startMenuRect = startMenu(gameboard);
 
-            
-           
         }
 
         //btn Start game. When btn is pressed - the game is begine.
@@ -118,16 +113,15 @@ namespace DodgeGameV3
                 gameboard.livesCheck(playerRect,enemyRect[i], gameboard.player, myCanvas, timer,gotcha);
             }
             
-            
-            scorePad = gameboard.winCheck(timer,gameboard.player,myCanvas,btnNext,scorePad);  // Нужно вернуть значение!!!!!!!
-
             if (gameboard.isLost == true)
             {
                 gameOver();
             }
 
+            //lvl
             currentLvl.Text = gameboard.lvlCounter.ToString();
             gameboard.lvlGrowing();
+            //==============
             gameboard.boarderCollisionCheck(playerRect,gameboard.player,myCanvas );
 
             //hearts
@@ -143,13 +137,11 @@ namespace DodgeGameV3
                 myCanvas.Children.Remove(heart3);
             }
             //=======
-            
-            currentScore.Text = gameboard.scorere.ToString();
 
-            scoreResult.Text = gameboard.scorere.ToString();
-            
+            //score
+            scorePad = gameboard.winCheck(timer, gameboard.player, myCanvas, btnNext, scorePad);  // Нужно вернуть значение!!!!!!!
+            scoreResult.Text = (gameboard.scorere + totalResult).ToString();//!!!!!
             gameboard.scoreCheck();
-            txtBlock.Text = scorePad.ToString();
             
         }
         //==================
@@ -230,9 +222,7 @@ namespace DodgeGameV3
             myCanvas.Children.Add(btnPause);
             myCanvas.Children.Add(lvlSpace);
             myCanvas.Children.Add(lvlTxt);
-            myCanvas.Children.Add(scoreTxt);
             myCanvas.Children.Add(currentLvl);
-            myCanvas.Children.Add(currentScore);
 
             playerRect = gameboard.player.createNewRectangle(playerRect, gameboard.player, myCanvas);
             enemyRect = new Rectangle[10];
@@ -252,6 +242,7 @@ namespace DodgeGameV3
             myCanvas.Children.Add(btnRestart);
             myCanvas.Children.Add(scoreResult);
             
+
 
         }
         //=======================
@@ -284,11 +275,14 @@ namespace DodgeGameV3
         // NEXT BUTTON
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            gameboard.lvlCounter++;          
+            gameboard.lvlCounter++;
+            totalResult += scorePad;
             removeUnits();
             gameboard.CreatingUnits();
             addUnits();  
             timer.Start();
+            
+            myCanvas.Children.Remove(btnNext);
         }
         //=================================================================
         public void removeUnits()

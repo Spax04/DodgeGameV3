@@ -31,13 +31,14 @@ namespace DodgeGameV3
         Rectangle rectangle;
         public PlayerUnit player;
         public EnemyUnit[] enemy;
-        public int lvlCounter = 2;
+        public int lvlCounter = 1;
         public bool isLost = false;
         public bool isWin = false;
         public int scorere = 0;
         public int point = 8;
         public int bonus = 2;
         public int countS = 0;
+        public int totalScore;
 
 
         public double _boardWidth, _boardHeight;
@@ -117,7 +118,7 @@ namespace DodgeGameV3
                 }
             }
             scorere = countS * (point + bonus);
-           
+            
         }
 
         public async void livesCheck(Rectangle playerRec,Rectangle enemyRec,UnitTool p1,Canvas myCanvas,DispatcherTimer timer,Image shark)
