@@ -39,6 +39,7 @@ namespace DodgeGameV3
         public int bonus = 2;
         public int countS = 0;
         public int totalScore;
+        public int currentLives = 0;
 
 
         public double _boardWidth, _boardHeight;
@@ -98,6 +99,7 @@ namespace DodgeGameV3
 
             if (count == enemy.Length -1 )
             {
+                currentLives = player._lives;
                 scoreSave = scorere;
                 player._speed = 0;
                 myCnavas.Children.Add(btn);
@@ -121,7 +123,7 @@ namespace DodgeGameV3
             
         }
 
-        public async void livesCheck(Rectangle playerRec,Rectangle enemyRec,UnitTool p1,Canvas myCanvas,DispatcherTimer timer,Image shark)
+        public async void livesCheck(Rectangle playerRec,Rectangle enemyRec,UnitTool p1,Canvas myCanvas,DispatcherTimer timer)
         {
             switch (player._lives)
             {
@@ -131,6 +133,7 @@ namespace DodgeGameV3
                         player.collisionCheck(playerRec, player, enemy[i], myCanvas, timer);
                         if (player._lives == 2)
                         {
+                            
                             setNewCoord(playerRec, myCanvas);
                             Thread.Sleep(2000);                       
                             break;

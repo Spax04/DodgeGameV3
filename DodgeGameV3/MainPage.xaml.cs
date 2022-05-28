@@ -110,7 +110,7 @@ namespace DodgeGameV3
             // player - enemy hit detector
             for(int i = 0; i < enemyRect.Length; i++)
             {
-                gameboard.livesCheck(playerRect,enemyRect[i], gameboard.player, myCanvas, timer,gotcha);
+                gameboard.livesCheck(playerRect,enemyRect[i], gameboard.player, myCanvas, timer);
             }
             
             if (gameboard.isLost == true)
@@ -143,6 +143,8 @@ namespace DodgeGameV3
             scoreResult.Text = (gameboard.scorere + totalResult).ToString();//!!!!!
             gameboard.scoreCheck();
             
+
+            livesTxt.Text = gameboard.currentLives.ToString();
         }
         //==================
 
@@ -224,6 +226,10 @@ namespace DodgeGameV3
             myCanvas.Children.Add(lvlTxt);
             myCanvas.Children.Add(currentLvl);
 
+            myCanvas.Children.Add(heart1);
+            myCanvas.Children.Add(heart2);
+            myCanvas.Children.Add(heart3);
+
             playerRect = gameboard.player.createNewRectangle(playerRect, gameboard.player, myCanvas);
             enemyRect = new Rectangle[10];
             for (int i = 0; i < enemyRect.Length; i++)
@@ -281,7 +287,7 @@ namespace DodgeGameV3
             gameboard.CreatingUnits();
             addUnits();  
             timer.Start();
-            
+            gameboard.player._lives = gameboard.currentLives;
             myCanvas.Children.Remove(btnNext);
         }
         //=================================================================

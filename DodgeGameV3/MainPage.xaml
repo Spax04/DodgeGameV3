@@ -48,7 +48,7 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
             <TextBlock x:Name="lvlTxt" Canvas.Left="84" TextWrapping="Wrap" Text="LEVEL" Canvas.Top="72" Height="63" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="36" FontWeight="Normal" FocusVisualPrimaryBrush="#FFEA0606" Foreground="#FFD12621" FontStyle="Italic"/>
-            <TextBlock x:Name="currentLvl" Canvas.Left="102" TextWrapping="Wrap" Text="12" Canvas.Top="127" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="60" FontSize="48" Foreground="#FFD12621" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock x:Name="currentLvl" Canvas.Left="102" Text="12" Canvas.Top="127" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="60" FontSize="48" Foreground="#FFD12621" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" TextAlignment="Center">
                 <TextBlock.RenderTransform>
                     <CompositeTransform SkewY="0" TranslateY="0"/>
                 </TextBlock.RenderTransform>
