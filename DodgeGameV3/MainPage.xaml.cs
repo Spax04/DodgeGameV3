@@ -144,7 +144,7 @@ namespace DodgeGameV3
             gameboard.scoreCheck();
             
 
-            livesTxt.Text = gameboard.currentLives.ToString();
+            
         }
         //==================
 
