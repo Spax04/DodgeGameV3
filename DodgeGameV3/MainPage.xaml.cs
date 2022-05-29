@@ -70,7 +70,7 @@ namespace DodgeGameV3
             myCanvas.Children.Add(heart3);
 
 
-            // timer has begone
+            // timer has been created and begine
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             timer.Tick += timer_Tick;
@@ -185,7 +185,6 @@ namespace DodgeGameV3
             myCanvas.Children.Remove(btnPlay);
             myCanvas.Children.Remove(btnNext);
 
-
             //gameover menu 
             myCanvas.Children.Remove(gameOverMenu);
             myCanvas.Children.Remove(gameOverImg);
@@ -196,7 +195,6 @@ namespace DodgeGameV3
             myCanvas.Children.Remove(heart2);
             myCanvas.Children.Remove(heart3);
             myCanvas.Children.Remove(gotcha);
-
 
             Rectangle startRect = new Rectangle();
             startRect.Width = gb._boardWidth;
@@ -247,9 +245,6 @@ namespace DodgeGameV3
             myCanvas.Children.Add(scoreName);
             myCanvas.Children.Add(btnRestart);
             myCanvas.Children.Add(scoreResult);
-            
-
-
         }
         //=======================
 
